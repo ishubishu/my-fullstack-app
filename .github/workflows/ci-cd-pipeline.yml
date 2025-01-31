@@ -38,13 +38,6 @@ jobs:
     - name: Push Docker image
       run: |
         docker push ishubishu/my-fullstack-app:latest
-        
-    - name: Set up SSH key
-    run: |
-      mkdir -p ~/.ssh
-      echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-      chmod 600 ~/.ssh/id_rsa
-
 
   deploy:
     runs-on: ubuntu-latest
