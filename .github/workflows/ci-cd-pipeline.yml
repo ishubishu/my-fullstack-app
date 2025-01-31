@@ -50,8 +50,8 @@ jobs:
       run: |
         echo "Deploying to server"
         ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-          cd /path/to/your/app
+          cd /Users/ishubishu/my-fullstack-app
           docker pull  ishubishu/my-fullstack-app:latest
           docker-compose down
-          docker-compose up -d
+          docker-compose up -git
         EOF
