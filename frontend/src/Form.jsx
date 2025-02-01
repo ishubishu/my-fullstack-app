@@ -24,7 +24,7 @@ const FormPage = () => {
       <h1>Submit Your Details</h1>
       <form onSubmit={handleSubmit} className="form">
         <label>
-          Name:
+          Namehgg:
           <input
             type="text"
             name="name"

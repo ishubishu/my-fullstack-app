@@ -1,3 +1,5 @@
+version: "3.8"
+
 services:
   backend:
     build: ./backend
@@ -5,6 +7,10 @@ services:
       - "3000:3000"
     environment:
       - JWT_SECRET=supersecret
+    volumes:
+      - ./backend:/app  # Syncs backend folder with container
+      - /app/node_modules  # Prevents overwriting container-installed dependencies
+    command: npm run start:dev  # Use nodemon to auto-restart on changes
 
   frontend:
     build: ./frontend
@@ -12,5 +18,7 @@ services:
       - "80:80"
     depends_on:
       - backend
-
-
+    volumes:
+      - ./frontend:/app  # Sync frontend folder
+      - /app/node_modules  # Prevents overwriting container-installed dependencies
+    command: npm start
