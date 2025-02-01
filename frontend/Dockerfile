@@ -1,16 +1,23 @@
-# Use a lightweight Node.js image to build the frontend
-FROM node:18-alpine AS build
+# Use the official Node.js image (alpine-based)
+FROM node:18-alpine
 
+# Set the working directory inside the container
 WORKDIR /app
+
+# Install any necessary system dependencies (such as bash)
+RUN apk add --no-cache bash
+
+# Copy package.json and package-lock.json to install dependencies
 COPY package.json package-lock.json ./
-RUN npm install
 
+# Install dependencies, including npm
+RUN npm install --legacy-peer-deps
+
+# Copy the rest of the frontend files into the container
 COPY . .
-RUN npm run build
 
-# Use Nginx to serve the built frontend
-FROM nginx:alpine
-COPY --from=build /app/build /usr/share/nginx/html
-
+# Expose the port for the frontend
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+
+# Command to start the frontend application
+CMD ["npm", "start"]

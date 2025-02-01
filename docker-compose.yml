@@ -20,5 +20,5 @@ services:
       - backend
     volumes:
       - ./frontend:/app  # Sync frontend folder
-      - /app/node_modules  # Prevents overwriting container-installed dependencies
+      # - /app/node_modules  # Prevents overwriting container-installed dependencies
     command: npm start
