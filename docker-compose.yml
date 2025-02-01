@@ -10,7 +10,7 @@ services:
     volumes:
       - ./backend:/app  # Syncs backend folder with container
       - /app/node_modules  # Prevents overwriting container-installed dependencies
-    command: npm run start:dev  # Use nodemon to auto-restart on changes
+    command: npm run start  # Use nodemon to auto-restart on changes
 
   frontend:
     build: ./frontend
