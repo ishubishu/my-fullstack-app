@@ -64,7 +64,7 @@ jobs:
         echo "Deploying to server"
         ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
           cd /home/ec2-user/
-          git clone https://github.com/ishubishu/my-fullstack-app.git
+          git clone https://github.com/ishubishu/my-fullstack-app.git my-fullstack-app
           cd my-fullstack-app
           docker pull ishubishu/my-fullstack-app:latest
           docker-compose down
