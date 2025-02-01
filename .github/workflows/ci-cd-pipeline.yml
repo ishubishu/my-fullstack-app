@@ -45,6 +45,7 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+
     - name: Set up SSH key for authentication
       run: |
         mkdir -p ~/.ssh
@@ -58,17 +59,16 @@ jobs:
         # Debugging: List SSH keys added to the agent
         ssh-add -l
 
-  - name: Debugging: Check SSH connectivity
-    run: |
-      ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "echo SSH works!"
-
+    - name: Debugging: Check SSH connectivity
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "echo SSH works!"
 
     - name: Deploy to server
       run: |
         echo "Deploying to server"
         ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
           cd /Users/ishubishu/my-fullstack-app
-          docker pull  ishubishu/my-fullstack-app:latest
+          docker pull ishubishu/my-fullstack-app:latest
           docker-compose down
-          docker-compose up -git
+          docker-compose up --build
         EOF
