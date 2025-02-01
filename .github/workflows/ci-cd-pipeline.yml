@@ -59,9 +59,9 @@ jobs:
         # Debugging: List SSH keys added to the agent
         ssh-add -l
 
-    - name: Debugging: Check SSH connectivity
-      run: |
-        ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "echo SSH works!"
+    # - name: Debugging: Check SSH connectivity
+    #   run: |
+    #     ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "echo SSH works!"
 
     - name: Deploy to server
       run: |
